@@ -1,0 +1,71 @@
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+#------------------
+# Shell Variables
+#------------------
+# Specify VS Code as default editor for the React Native Simulator
+export REACT_EDITOR=code
+# Set VS Code Insiders as default code editor
+export EDITOR=code
+
+#------------------
+# antigen config
+#------------------
+source ~/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Allow the use of the z plugin to easily navigate directories
+antigen bundle agkozak/zsh-z
+
+# Load the theme.
+# antigen theme robbyrussell
+# antigen theme agnoster
+antigen theme spaceship-prompt/spaceship-prompt
+antigen theme romkatv/powerlevel10k
+
+# Apply all plugin settings
+antigen apply
+
+#------------------
+# Zsh hooks
+#------------------
+
+# Enable the addition of zsh hook functions
+autoload -U add-zsh-hook
+
+# Set the tab title to the current working directory before each prompt
+function tabTitle () {
+  window_title="\033]0;${PWD##*/}\007"
+  echo -ne "$window_title"
+}
+
+# Executes tabTitle before each prompt
+add-zsh-hook precmd tabTitle
+
+#------------------
+# Aliases (for a full list of aliases, run `alias`). 
+# Note: the following aliases overwrite any aliases specified in the Oh My Zsh plugins
+#------------------
+source ./.ds-dotfiles/aliases
+
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+#sublime-text4
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
+# from zshrc
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+# start the ssh-agent
+eval $(ssh-agent -s)
+ssh-add &> /dev/null
