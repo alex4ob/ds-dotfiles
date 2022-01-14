@@ -1,8 +1,9 @@
-
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 ############################################################################################
 # Optional
 ############################################################################################
+
+[[ -f $SCRIPT_DIR/homebrew/Brewfile.optional ]] && brew bundle --file=$SCRIPT_DIR/homebrew/Brewfile.optional
 
 # antigen -> all plugins already configured in .zshrc-custom
 curl -L git.io/antigen > antigen.zsh
