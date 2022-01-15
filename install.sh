@@ -19,14 +19,17 @@ source ~/.zprofile
 [[ -f $SCRIPT_DIR/homebrew/Brewfile ]] && brew bundle --file=$SCRIPT_DIR/homebrew/Brewfile || "Note: Could not find Bundle file, please install yourself the packages you want"
 
 # Python3
-export PATH="$PATH_PREFIX/opt/python/libexec/bin:$PATH"
+echo "$PATH_PREFIX/opt/python/libexec/bin:$PATH" >> ~/.zprofile
+source ~/.zprofile
+alias python='python3'
+alias pip='pip3'
 pip3 install --user pipenv
 pip3 install virtualenv
 pip3 install virtualenvwrapper
 
 # Docker Desktop
-[[ $ARCH == $ARCH_AMD64 ]] && DOCKER_URL="https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-amd64"
-[[ $ARCH == $ARCH_ARM64 ]] && DOCKER_URL="https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-arm64"
+[[ $ARCH == $ARCH_AMD64 ]] && DOCKER_URL="https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_campaign=docs-driven-download-mac-amd64"
+[[ $ARCH == $ARCH_ARM64 ]] && DOCKER_URL="https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_campaign=docs-driven-download-mac-arm64"
 if [[ ! -d "/Applications/Docker.app" ]]; then
 	curl $DOCKER_URL--output ~/Downloads/Docker.dmg
 	hdiutil mount ~/Downloads/Docker.dmg
