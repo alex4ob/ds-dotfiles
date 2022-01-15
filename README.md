@@ -1,7 +1,7 @@
 # ds-dotfiles
-If you dont yet have git installed, run commands below to download the script and install all packages
+
+Installation:
 
 ```bash
-curl -L -O https://github.com/alex4ob/ds-dotfiles/archive/refs/heads/main.zip && unzip -qo -d ~ main.zip
-chmod 755 ~/ds-dotfiles-main/install.sh && ~/ds-dotfiles-main/install.sh
+git clone https://github.com/alex4ob/ds-dotfiles.git ~/.ds-dotfiles && cd ~/.dotfiles && source install.sh
 ```
