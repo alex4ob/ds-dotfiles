@@ -31,7 +31,7 @@ pip3 install virtualenvwrapper
 [[ $ARCH == $ARCH_AMD64 ]] && DOCKER_URL="https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_campaign=docs-driven-download-mac-amd64"
 [[ $ARCH == $ARCH_ARM64 ]] && DOCKER_URL="https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_campaign=docs-driven-download-mac-arm64"
 if [[ ! -d "/Applications/Docker.app" ]]; then
-	curl $DOCKER_URL--output ~/Downloads/Docker.dmg
+	curl $DOCKER_URL --output ~/Downloads/Docker.dmg
 	hdiutil mount ~/Downloads/Docker.dmg
 	sudo cp -R /Volumes/Docker/Docker.app /Applications
 	hdiutil unmount /Volumes/Docker
